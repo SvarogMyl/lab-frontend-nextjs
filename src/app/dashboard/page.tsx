@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { LogOut, LayoutDashboard, Database, ShieldCheck } from "lucide-react";
+import Link from "next/link";
 
 export default function DashboardPage() {
   const [token, setToken] = useState<string | null>(null);
@@ -51,13 +52,13 @@ export default function DashboardPage() {
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {/* Stats Cards */}
-          <div className="bg-indigo-600/10 border border-indigo-500/20 p-8 rounded-3xl">
-            <div className="bg-indigo-500/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-indigo-400">
+          <Link href="/items" className="bg-indigo-600/10 border border-indigo-500/20 p-8 rounded-3xl hover:bg-indigo-600/20 transition-all block group">
+            <div className="bg-indigo-500/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-indigo-400 group-hover:scale-110 transition-transform">
               <LayoutDashboard size={24} />
             </div>
-            <h3 className="text-sm font-medium text-indigo-300 uppercase tracking-wider">Módulos Activos</h3>
-            <p className="text-4xl font-bold text-white mt-2">12</p>
-          </div>
+            <h3 className="text-sm font-medium text-indigo-300 uppercase tracking-wider">Gestión de Items</h3>
+            <p className="text-sm text-slate-400 mt-2">Crear, editar y eliminar inventario</p>
+          </Link>
 
           <div className="bg-emerald-600/10 border border-emerald-500/20 p-8 rounded-3xl">
             <div className="bg-emerald-500/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-emerald-400">

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { LogOut, LayoutDashboard, Database, ShieldCheck } from "lucide-react";
+import { LogOut, LayoutDashboard, Database, Search } from "lucide-react";
 import Link from "next/link";
 
 export default function DashboardPage() {
@@ -68,13 +68,13 @@ export default function DashboardPage() {
             <p className="text-4xl font-bold text-white mt-2">Estable</p>
           </div>
 
-          <div className="bg-amber-600/10 border border-amber-500/20 p-8 rounded-3xl">
-            <div className="bg-amber-500/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-amber-400">
-              <ShieldCheck size={24} />
+          <Link href="/catalogo" className="bg-amber-600/10 border border-amber-500/20 p-8 rounded-3xl hover:bg-amber-600/20 transition-all block group">
+            <div className="bg-amber-500/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-amber-400 group-hover:scale-110 transition-transform">
+              <Search size={24} />
             </div>
-            <h3 className="text-sm font-medium text-amber-300 uppercase tracking-wider">Seguridad</h3>
-            <p className="text-4xl font-bold text-white mt-2">JWT v2</p>
-          </div>
+            <h3 className="text-sm font-medium text-amber-300 uppercase tracking-wider">Catálogo</h3>
+            <p className="text-sm text-slate-400 mt-2">Consulta el stock de medicamentos</p>
+          </Link>
         </motion.div>
 
         <motion.div 

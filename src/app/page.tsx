@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { login } from "@/lib/api";
+import { useServerHealth } from "@/hooks/useServerHealth";
 import { motion } from "framer-motion";
-import { Lock, User, Loader2, AlertCircle } from "lucide-react";
+import { Lock, User, Loader2, AlertCircle, Coffee } from "lucide-react";
 
 export default function LoginPage() {
+  const { isUp, isRetrying } = useServerHealth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -44,6 +46,21 @@ export default function LoginPage() {
             <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">Lab 2</h1>
             <p className="text-indigo-200">Accede al sistema de gestión</p>
           </div>
+
+          {!isUp && isUp !== null && (
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-6 p-4 bg-amber-500/20 border border-amber-500/50 rounded-2xl flex items-center gap-3 text-amber-200"
+            >
+              <Coffee className="animate-bounce" size={20} />
+              <div className="flex-1">
+                <p className="text-sm font-semibold">El servidor está despertando...</p>
+                <p className="text-xs opacity-80">Render está iniciando el servicio (esto toma ~1 min).</p>
+              </div>
+              <Loader2 className="animate-spin opacity-50" size={16} />
+            </motion.div>
+          )}
 
           {error && (
             <motion.div 
@@ -108,11 +125,13 @@ export default function LoginPage() {
 
               <button
                 type="submit"
-                disabled={loading}
+                disabled={loading || !isUp}
                 className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-4 rounded-2xl shadow-lg shadow-indigo-600/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <Loader2 className="animate-spin" size={20} />
+                ) : !isUp && isUp !== null ? (
+                  "Esperando servidor..."
                 ) : (
                   "Iniciar Sesión"
                 )}

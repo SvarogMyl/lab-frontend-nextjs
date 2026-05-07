@@ -17,6 +17,19 @@ export async function login(username: string, password: string) {
   return response.json();
 }
 
+export async function checkHealth() {
+  try {
+    const response = await fetch(`${API_URL}/health`, {
+      signal: AbortSignal.timeout(5000) 
+    });
+    if (!response.ok) return false;
+    const data = await response.json();
+    return data.status === "UP";
+  } catch (err) {
+    return false;
+  }
+}
+
 export interface Item {
   id?: number;
   nombre: string;

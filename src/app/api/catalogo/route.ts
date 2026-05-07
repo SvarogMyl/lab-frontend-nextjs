@@ -6,7 +6,7 @@ const DATA_URL =
 export async function GET() {
   try {
     const response = await fetch(DATA_URL, {
-      next: { revalidate: 300 }, // Cache por 5 minutos, luego revalida
+      cache: "no-store", // Desactiva el caché por completo
     });
 
     if (!response.ok) {

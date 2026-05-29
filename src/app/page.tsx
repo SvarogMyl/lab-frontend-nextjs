@@ -55,8 +55,8 @@ export default function LoginPage() {
             >
               <Coffee className="animate-bounce" size={20} />
               <div className="flex-1">
-                <p className="text-sm font-semibold">El servidor está despertando...</p>
-                <p className="text-xs opacity-80">Render está iniciando el servicio (esto toma ~1 min).</p>
+                <p className="text-sm font-semibold">El servidor no está disponible</p>
+                <p className="text-xs opacity-80">Reintentando conexión automáticamente...</p>
               </div>
               <Loader2 className="animate-spin opacity-50" size={16} />
             </motion.div>
@@ -125,13 +125,13 @@ export default function LoginPage() {
 
               <button
                 type="submit"
-                disabled={loading || !isUp}
+                disabled={loading || isUp === false}
                 className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-4 rounded-2xl shadow-lg shadow-indigo-600/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <Loader2 className="animate-spin" size={20} />
-                ) : !isUp && isUp !== null ? (
-                  "Esperando servidor..."
+                ) : isUp === false ? (
+                  "Servidor no disponible..."
                 ) : (
                   "Iniciar Sesión"
                 )}

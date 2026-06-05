@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://spring.165.1.125.187.nip.io';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://spring.svasoft.cl';
 
 export async function login(username: string, password: string) {
   const response = await fetch(`${API_URL}/login`, {
